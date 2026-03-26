@@ -29,7 +29,14 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2026 - MaSuperCalculette [ 1 Tier ] - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2026 - MaSuperCalculette [ 1 Tier ] <br/> @@ @System.Environment.MachineName [ @System.Environment.OSVersion.ToString() ] 
+                @foreach (var i in System.Net.Dns.GetHostAddresses(System.Net.Dns.GetHostName()))
+                {
+                    if (i.AddressFamily==System.Net.Sockets.AddressFamily.InterNetwork) {
+                        <span>@i</span> 
+                    }
+                }
+
         </div>
     </footer>
 
