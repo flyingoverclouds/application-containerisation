@@ -29,7 +29,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2026 - MaSuperCalculette [ 1 Tier ] <br/> @@ @System.Environment.MachineName [ @System.Environment.OSVersion.ToString() ] 
+            &copy; 2026 - MaSuperCalculette [ 1 Tier ] <br /> @@ @System.Net.Dns.GetHostName() [ @System.Environment.OSVersion.ToString() ]
                 @foreach (var i in System.Net.Dns.GetHostAddresses(System.Net.Dns.GetHostName()))
                 {
                     if (i.AddressFamily==System.Net.Sockets.AddressFamily.InterNetwork) {

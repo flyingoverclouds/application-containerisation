@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection.Metadata;
+using System.Text.Encodings.Web;
 
 namespace MaSuperCalculette.Pages
 {
@@ -22,8 +24,9 @@ namespace MaSuperCalculette.Pages
         public decimal? Resultat { get; set; } = null;
 
         public string Erreur { get; set; } = string.Empty;
-        
-        
+
+        public string ApiEnvironmentInfo { get; set; } = string.Empty;
+
         public void OnGet()
         {
 
@@ -35,11 +38,14 @@ namespace MaSuperCalculette.Pages
             try
             {
                 string calculatorUrl = _config["Calculator:Url"];
-                var apiUri = new Uri($"http://{calculatorUrl}/Calculator?nombre1={Nombre1}&operation={Operation}&nombre2={Nombre2}");
+                var apiUri = new Uri($"http://{calculatorUrl}/Calculator/FaireCalcul?nombre1={Nombre1}&operation={Operation.Replace("+", "%2b")}&nombre2={Nombre2}");
 
                 HttpClient client = new();
                 var resultatCalcul = await client.GetStringAsync(apiUri);
                 Resultat = decimal.Parse(resultatCalcul);
+
+                apiUri = new Uri($"http://{calculatorUrl}/Calculator/EnvironmentInfo");
+                ApiEnvironmentInfo = await client.GetStringAsync(apiUri);
 
             }
             catch (Exception ex)

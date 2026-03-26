@@ -13,7 +13,7 @@
         <label>Nombre 1 : <input type="text" asp-for="Nombre1"/> </label> 
         <label>Operation :  
             <select asp-for="Operation">
-                <option>+</option>
+                <option>&#43;</option>
                 <option>-</option>
                 <option>/</option>
                 <option>*</option>
@@ -37,6 +37,9 @@
         <h1 class="display-4">Résultat : </h1>
         @Model.Nombre1 @Model.Operation @Model.Nombre2 <span> = </span> @Model.Resultat
     }
+    <div>
+        <i>API environment info : @Model.ApiEnvironmentInfo </i>
+    </div>
     <hr />
     
 
