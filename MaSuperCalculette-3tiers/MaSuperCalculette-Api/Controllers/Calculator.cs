@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using System;
 using System.Net;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -41,28 +42,49 @@ namespace MaSuperCalculette_Api_3tiers.Controllers
         [ProducesResponseType<decimal>(StatusCodes.Status200OK)]
         [ProducesResponseType<decimal>(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType<decimal>(StatusCodes.Status501NotImplemented)]
-        public IActionResult FaireCalcul(int nombre1,string operation,int nombre2)
+        public async Task<IActionResult> FaireCalcul(int nombre1,string operation,int nombre2)
         {
             try
             {
+                int res;
                 switch (operation)
                 {
                     case "+":
-                        return Ok(nombre1 + nombre2);
+                        res = nombre1 + nombre2;
+                        await LogCalcul($"{nombre1} + {nombre2} = {res}");
+                        return Ok(res);
                     case "-":
-                        return  Ok(nombre1 - nombre2);
+                        res = nombre1 - nombre2;
+                        await LogCalcul($"{nombre1} - {nombre2} = {res}");
+                        return Ok(res);
                     case "/":
-                        return  Ok(nombre1 / nombre2);
+                        res = nombre1 / nombre2;
+                        await LogCalcul($"{nombre1} / {nombre2} = {res}");
+                        return Ok(res);
                     case "*":
-                        return  Ok(nombre1 * nombre2);
+                        res = nombre1 * nombre2;
+                        await LogCalcul($"{nombre1} * {nombre2} = {res}");
+                        return Ok(nombre1 * nombre2);
                     default:
+                        await LogCalcul($"{nombre1} {operation} {nombre2} = OPERATION INCONNU");
                         return NotFound($"Operation '{operation}' non implémentée.");
                 }
             }
             catch (Exception ex)
             {
+                await LogCalcul($"{nombre1} {operation} {nombre2} = ERREUR {ex.Message}");
                 return Problem(ex.Message);
             }
         }
+
+
+        async Task LogCalcul(string calcul)
+        {
+            await System.IO.File.AppendAllTextAsync(
+                Path.Combine(_config["CalculatorApi:CalculLogPath"],$"CalcuLog-{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}.txt")
+                , $"{DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second}  -  {calcul}\n"
+                );
+        }
+
     }
 }
