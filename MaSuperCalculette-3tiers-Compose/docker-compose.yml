@@ -1,0 +1,15 @@
+services:
+  masupercalculette-front:
+    image: ${DOCKER_REGISTRY-}masupercalculettefront
+    build:
+      context: .
+      dockerfile: MaSuperCalculette/Dockerfile
+    environment:
+      CalculatorUrl: masupercalculette-api-3tiers:8080
+
+  masupercalculette-api-3tiers:
+    image: ${DOCKER_REGISTRY-}masupercalculetteapi3tiers
+    build:
+      context: .
+      dockerfile: MaSuperCalculette-Api/Dockerfile
+

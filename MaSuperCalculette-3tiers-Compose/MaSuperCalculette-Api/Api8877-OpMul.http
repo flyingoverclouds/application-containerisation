@@ -1,0 +1,6 @@
+@MaSuperCalculette_Api_HostAddress = http://localhost:5109
+
+GET http://localhost:8877/calculator/fairecalcul?nombre1=5&operation=*&nombre2=10
+Accept: application/json
+
+###
