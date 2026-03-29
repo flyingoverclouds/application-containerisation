@@ -1,0 +1,23 @@
+##### Séquence CLI de démarrage : 
+#docker volume create log_de_calcul
+#docker network create calculator_app
+#docker run --network calculator_app --network-alias api --mount type=bind,src=C:\calclog,target=/calclog  masupercalculette-api:latest
+#docker run --network calculator_app --network-alias front -p 9999:8080 --env CalculatorUrl=api:8080  masupercalculette-front:latest
+
+##### Composition pour un déploiement 
+
+services:
+  front:
+    image: masupercalculette-front:latest
+    ports:
+      - 9999:8080
+    environment:
+      CalculatorUrl: api:8080
+    depends_on:
+      - api
+  
+  api: 
+    image: masupercalculette-api:latest
+    volumes:
+      - /c/calclog:/calclog
+  
