@@ -35,9 +35,9 @@ namespace MaSuperCalculette.Pages
         public async Task<IActionResult> OnPostAsync()
         {
             Erreur = "";
+            var calculatorUrl= _config["CalculatorUrl"];
             try
             {
-                string calculatorUrl = _config["Calculator:Url"];
                 var apiUri = new Uri($"http://{calculatorUrl}/Calculator/FaireCalcul?nombre1={Nombre1}&operation={Operation.Replace("+", "%2b")}&nombre2={Nombre2}");
 
                 HttpClient client = new();
@@ -50,7 +50,8 @@ namespace MaSuperCalculette.Pages
             }
             catch (Exception ex)
             {
-                    Erreur= ex.Message; 
+                
+                Erreur = calculatorUrl + " : " + ex.Message; 
             }
             return Page();
         }
