@@ -12,7 +12,7 @@ docker run -p 9999:8080  masupercalculette-front:latest
 
 ### tester l'app
 browse vers http://localhost:9999
---> ERREUR (Expliquer) 
+--> ERREUR (Expliquer pourquoi !) 
 
 ### démarrer le front en changeant le settings 
 docker run -p 9999:8080 --env CalculatorUrl=192.168.14.214:8877  masupercalculette-front:latest
@@ -33,7 +33,7 @@ docker stop  APIID
 ### redémarrer l'api sans port expose à l'extieur
 docker run -d --mount type=bind,src=c:\calclog,target=/calclog  masupercalculette-api:latest
 
-### expliquer pour 
+expliquer pourquoi.
 
 ## NETWORK 
 
@@ -60,7 +60,7 @@ docker run --network calculator_app -p 9999:8080 --env CalculatorUrl=172.18.0.2:
 tester avec un browser sur :9999 -> ca marche. 
 
 ## Utilisation du dns interne
-montrer les id et les hostname qui sont affié par l'app
+montrer les id et les hostname qui sont affiché par l'app
 
 docker run --network calculator_app -p 9999:8080 --env CalculatorUrl=IDDUCONTAINER:8080  masupercalculette-front:latest
 	relancer le front en mettant l'id au lieu de l'ip

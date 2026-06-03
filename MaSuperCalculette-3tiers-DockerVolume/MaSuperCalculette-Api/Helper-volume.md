@@ -1,4 +1,5 @@
 ﻿## Génération des images
+
 ### se mettre dans le dosser de la solution ( .slnx)
 docker build -f MaSuperCalculette-Api\Dockerfile -t masupercalculette-api:latest  .
 docker build -f MaSuperCalculette\Dockerfile -t masupercalculette-front:latest  .
