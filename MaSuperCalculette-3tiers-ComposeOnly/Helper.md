@@ -8,6 +8,9 @@ docker network ls
 docker volume ls
     -> plus de volume de démo
 
+## Build des images si image pas dispo
+docker build -f MaSuperCalculette-Api\Dockerfile -t masupercalculette-api:latest  .
+docker build -f MaSuperCalculette\Dockerfile -t masupercalculette-front:latest  .
 
 # compose.yaml 
 ## ecriture du compose
