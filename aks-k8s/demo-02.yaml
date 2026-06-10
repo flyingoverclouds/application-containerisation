@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demonamespace
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: testpod
+  name: testpod
+  namespace: demonamespace
+spec:
+  containers:
+  - image: nginx
+    name: testpod
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  
