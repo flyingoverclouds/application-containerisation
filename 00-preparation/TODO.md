@@ -68,7 +68,7 @@ wsl --list --online
 - Cliquez sur “Install”
 - Coffee pause (ou Tea pause, ou Limonad pause , …)
 
-## 5 - Récupération du code source des exemples/lab/démo
+## 5 - Récupération du code source des exemples/labs/démos
 
 Le code source se trouve dans le repo github : https://github.com/flyingoverclouds/application-containerisation 
 
