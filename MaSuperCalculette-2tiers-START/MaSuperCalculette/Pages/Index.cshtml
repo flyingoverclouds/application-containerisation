@@ -1,0 +1,46 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Kalkulon";
+
+    // ViewBag.Calcul = "1+3";
+    // ViewBag.Resultat = 123.45;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Votre saisie : </h1>
+    <form asp-action="OnPostAsync" method="post">
+        <label>Nombre 1 : <input type="text" asp-for="Nombre1"/> </label> 
+        <label>Operation :  
+            <select asp-for="Operation">
+                <option>&#43;</option>
+                <option>-</option>
+                <option>/</option>
+                <option>*</option>
+            </select>
+        </label>
+        <label>Nombre 1 : <input type="text" asp-for="Nombre2" /> </label>
+        <button type="submit" value="egal"> = </button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.Erreur))
+    {
+        <hr />
+        <h2 style="color: red">
+            <b>ERREUR : </b> <span>@Model.Erreur </span>
+        </h2>
+    }
+
+    @if (Model.Resultat.HasValue)
+    {
+        <hr/>  
+        <h1 class="display-4">Résultat : </h1>
+        @Model.Nombre1 @Model.Operation @Model.Nombre2 <span> = </span> @Model.Resultat
+    }
+    <div>
+        <i>API environment info : @Model.ApiEnvironmentInfo </i>
+    </div>
+    <hr />
+    
+
+</div>

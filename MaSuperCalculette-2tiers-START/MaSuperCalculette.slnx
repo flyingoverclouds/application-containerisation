@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MaSuperCalculette-Api/MaSuperCalculette-Api.csproj" Id="c33f28a9-a795-4693-934c-f06ced5b9e4c" />
+  <Project Path="MaSuperCalculette/MaSuperCalculette-Front.csproj" />
+</Solution>

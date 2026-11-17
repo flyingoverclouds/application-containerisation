@@ -1,0 +1,10 @@
+@MaSuperCalculette_Api_HostAddress = http://localhost:5109
+
+### Get exec environment info
+GET {{MaSuperCalculette_Api_HostAddress}}/Calculator/EnvironmentInfo
+Accept: application/json
+
+### Test Calcul
+GET {{MaSuperCalculette_Api_HostAddress}}/Calculator/FaireCalcul?nombre1=10&operation=-&nombre2=3
+Accept: application/json
+
